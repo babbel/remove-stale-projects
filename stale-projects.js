@@ -1,9 +1,9 @@
-exports.getStaleProjects = (currentProjects, targetProjects) => {
-  return currentProjects.filter(p => !targetProjects.includes(p.node.project.name));
-};
+exports.getStaleProjects = (currentProjects, targetProjects) => (
+  currentProjects.filter((p) => !targetProjects.includes(p.node.project.name))
+);
 
-exports.removeStaleProjects = ({client, projects}) => {
-  return Promise.all(projects.map(staleProject => {
-    return client.rest.projects.deleteCard({ card_id: staleProject.node.databaseId })
-  }))
-};
+exports.removeStaleProjects = async ({ client, projects }) => (
+  Promise.all(projects.map((staleProject) => (
+    client.rest.projects.deleteCard({ card_id: staleProject.node.databaseId })
+  )))
+);
