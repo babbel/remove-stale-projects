@@ -1,0 +1,20 @@
+{
+  "name": "remove-stale-projects",
+  "version": "0.0.1",
+  "description": "Determine stale projects and remove them",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/core": "*",
+    "@actions/github": "*"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

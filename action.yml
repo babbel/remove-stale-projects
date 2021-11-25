@@ -1,0 +1,19 @@
+name: Remove stale projects
+description: |
+  Determine stale projects and remove them
+
+inputs:
+  current-projects:
+    description: List of projects the given pull request is assigned to
+    required: true
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: false
+  target-projects:
+    description: List of projects the given pull request should be assigned to
+    required: true
+
+runs:
+  using: node12
+  main: dist/index.js
