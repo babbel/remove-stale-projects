@@ -11154,6 +11154,24 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 602:
+/***/ ((__unused_webpack_module, exports) => {
+
+exports.getStaleProjects = (currentProjects, targetProjects) => (
+  currentProjects.filter((p) => !targetProjects.includes(p.node.project.name))
+);
+
+exports.removeStaleProjects = async ({ client, projects }) => {
+  // process projects sequentially to reduce risk of throttling by GitHub API
+  for (const project of projects) {
+    // eslint-disable-next-line no-await-in-loop
+    await client.rest.projects.deleteCard({ card_id: project.node.databaseId });
+  }
+};
+
+
+/***/ }),
+
 /***/ 133:
 /***/ ((module) => {
 
@@ -11405,23 +11423,23 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
+const { getStaleProjects, removeStaleProjects } = __nccwpck_require__(602);
 
 async function run() {
   try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+    const currentProjects = JSON.parse(core.getInput('current-projects', { required: true }));
+    const targetProjects = JSON.parse(core.getInput('current-projects', { required: true }));
+    const token = core.getInput('github-token', { required: true });
+    const octokit = github.getOctokit(token);
+
+    const staleProjects = getStaleProjects(currentProjects, targetProjects);
+    await removeStaleProjects({ client: octokit, projects: staleProjects });
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
-run()
+run();
 
 })();
 
