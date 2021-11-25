@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb-base",
+  "ignorePatterns": ["dist/*.js"],
+  "overrides": [
+    {
+      "files": "**/*.js",
+      "rules": {
+        "no-restricted-syntax": "off"
+      }
+    },
+    {
+      "files": "__test__/**/*.js",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ],
+  "parserOptions": {
+    "requireConfigFile": false
+  },
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "node": true,
+    "jest": true
+  }
+}
