@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js",
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {
@@ -12,7 +13,11 @@
     "@actions/github": "*"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
     "@vercel/ncc": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
     "jest": "*",
     "nock": "*"
   },
