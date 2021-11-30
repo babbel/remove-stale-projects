@@ -17,8 +17,8 @@ The workflow is as follows:
 
 ## Inputs
 
-| Name               | Description                                                   | Type         | Required? | Default |
-|--------------------|---------------------------------------------------------------|--------------|-----------|---------|
-| `current-projects` | List of projects the given pull request is assigned to        | `JSON array` | YES       | n/a     |
-| `github-token`     | GitHub token used to create an authenticated client           | `string`     | NO        | `${{ github.token }}` |
-| `target-projects`  | List of projects the given pull request should be assigned to | `JSON array` | YES       | n/a     |
+| Name                    | Description                                                   | Type         | Required? | Default |
+|-------------------------|---------------------------------------------------------------|--------------|-----------|---------|
+| `current-projects`      | List of projects the given pull request is assigned to        | `JSON array` | YES       | n/a     |
+| `github-token`          | GitHub token used to create an authenticated client           | `string`     | NO        | `${{ github.token }}` |
+| `target-projects-names` | List of project names the given pull request should be assigned to | `JSON array` | YES       | n/a     |
