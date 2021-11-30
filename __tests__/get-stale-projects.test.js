@@ -1,7 +1,7 @@
 const { getStaleProjects } = require('../stale-projects');
 
-const fooproj = { node: { project: { name: 'foo' } } };
-const barproj = { node: { project: { name: 'bar' } } };
+const fooproj = { databaseId: 123, name: 'foo' };
+const barproj = { databaseId: 456, name: 'bar' };
 
 test('no stale projects when current and target are both empty', async () => {
   expect(getStaleProjects([], [])).toStrictEqual([]);

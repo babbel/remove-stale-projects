@@ -1,5 +1,5 @@
-exports.getStaleProjects = (currentProjects, targetProjects) => (
-  currentProjects.filter((p) => !targetProjects.includes(p.node.project.name))
+exports.getStaleProjects = (currentProjects, targetProjectNames) => (
+  currentProjects.filter((p) => !targetProjectNames.includes(p.name))
 );
 
 exports.removeStaleProjects = async ({ client, projects }) => {
