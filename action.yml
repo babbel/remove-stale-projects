@@ -10,8 +10,8 @@ inputs:
     description: The GitHub token used to create an authenticated client
     default: ${{ github.token }}
     required: false
-  target-projects:
-    description: List of projects the given pull request should be assigned to
+  target-project-names:
+    description: List of project names the given pull request should be assigned to
     required: true
 
 runs:
