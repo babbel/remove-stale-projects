@@ -8467,7 +8467,7 @@ const { getStaleProjects, removeStaleProjects } = __nccwpck_require__(602);
 async function run() {
   try {
     const currentProjects = JSON.parse(core.getInput('current-projects', { required: true }));
-    const targetProjectNames = JSON.parse(core.getInput('target-projects-names', { required: true }));
+    const targetProjectNames = JSON.parse(core.getInput('target-project-names', { required: true }));
     const token = core.getInput('github-token', { required: true });
     const octokit = github.getOctokit(token);
 
