@@ -8276,8 +8276,8 @@ function wrappy (fn, cb) {
 /***/ 602:
 /***/ ((__unused_webpack_module, exports) => {
 
-exports.getStaleProjects = (currentProjects, targetProjects) => (
-  currentProjects.filter((p) => !targetProjects.includes(p.name))
+exports.getStaleProjects = (currentProjects, targetProjectNames) => (
+  currentProjects.filter((p) => !targetProjectNames.includes(p.name))
 );
 
 exports.removeStaleProjects = async ({ client, projects }) => {
@@ -8466,12 +8466,15 @@ const { getStaleProjects, removeStaleProjects } = __nccwpck_require__(602);
 
 async function run() {
   try {
+    // NOTE:
+    // - current-projects is a list of objects (see babbel/current-projects)
+    // - target-projects is a list of strings
     const currentProjects = JSON.parse(core.getInput('current-projects', { required: true }));
-    const targetProjects = JSON.parse(core.getInput('current-projects', { required: true }));
+    const targetProjectNames = JSON.parse(core.getInput('target-projects', { required: true }));
     const token = core.getInput('github-token', { required: true });
     const octokit = github.getOctokit(token);
 
-    const staleProjects = getStaleProjects(currentProjects, targetProjects);
+    const staleProjects = getStaleProjects(currentProjects, targetProjectNames);
     await removeStaleProjects({ client: octokit, projects: staleProjects });
   } catch (error) {
     core.setFailed(error.message);
