@@ -14,7 +14,7 @@ test('removes all projects successfully', async () => {
   expect.assertions(1);
   await removeStaleProjects({
     client: github.getOctokit('token'),
-    projects: [{ node: { databaseId: 123 } }, { node: { databaseId: 456 } }],
+    projects: [{ databaseId: 123 }, { databaseId: 456 }],
   });
   expect(nock.isDone()).toBe(true);
 });
@@ -30,6 +30,6 @@ test('rejects if at least one of the requests fail', () => {
 
   expect(removeStaleProjects({
     client: github.getOctokit('token'),
-    projects: [{ node: { databaseId: 123 } }, { node: { databaseId: 456 } }],
+    projects: [{ databaseId: 123 }, { databaseId: 456 }],
   })).rejects.toThrow('Not Found');
 });
