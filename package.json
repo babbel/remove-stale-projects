@@ -13,7 +13,7 @@
     "@actions/github": "*"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
+    "@babel/eslint-parser": "^7.17.0",
     "@vercel/ncc": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
