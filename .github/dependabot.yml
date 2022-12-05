@@ -6,12 +6,12 @@ updates:
   schedule:
     interval: weekly
     day: sunday
-    time: "11:00"
+    time: "01:00"
     timezone: Europe/Berlin
 - package-ecosystem: github-actions
   directory: /
   schedule:
     interval: weekly
     day: sunday
-    time: "11:00"
+    time: "01:00"
     timezone: Europe/Berlin
